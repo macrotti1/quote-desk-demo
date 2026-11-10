@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { test } from "node:test";
 import {
   CATALOG_TOOLS, CasesFileSchema, DESK_EVENT_TYPES, DeskEventSchema, QUOTE_DRAFT_JSON_SCHEMA, QuoteDraftSchema,
+  RFQ_ID_PATTERN, RfqSchema,
   SCHEMA_BOUND_KEYS, STOCK_ATTEMPTS, SYNTHETIC_NOTICE, TOOL_RESULT_SCHEMAS, expectedStock, formatStockFault,
   fullToolName, parseStockFault, stockAttemptFails, stockLineKey,
 } from "../src/contracts.ts";
@@ -387,5 +388,28 @@ test("the Ok shape of every tool parses when built from the pricing functions, a
   for (const [tool, result] of results) {
     assert.ok(TOOL_RESULT_SCHEMAS[tool].safeParse(result).success, tool);
     assert.ok(!TOOL_RESULT_SCHEMAS[tool].safeParse({ ...result, extra: 1 }).success, `${tool} is strict`);
+  }
+});
+
+test("the engines floor covers import.meta.main, which the server entry needs", () => {
+  const pkg = JSON.parse(readFileSync(join(PATHS.root, "package.json"), "utf8")) as { engines: { node: string } };
+  const floor = /^>=(\d+)\.(\d+)\.(\d+)$/.exec(pkg.engines.node);
+  assert.ok(floor !== null, `engines.node is ${pkg.engines.node}, expected the form >=major.minor.patch`);
+  const major = Number(floor[1]);
+  const minor = Number(floor[2]);
+  // import.meta.main arrived in Node 24.2.0. On an older 24 the stdio server would start and serve nothing.
+  assert.ok(major > 24 || (major === 24 && minor >= 2), `engines.node ${pkg.engines.node} allows a Node without it`);
+});
+
+test("an RFQ id is a plain name, so it can't steer the outbox file path", () => {
+  const rfq = { id: "RFQ-001", customer: "c", contactEmail: "a@b.example", receivedOn: "2026-01-05", subject: "s",
+    body: "b" };
+  for (const id of ["RFQ-001", "HO-010", "MINI-006", "pasted_2026.11.09-a"]) {
+    assert.ok(RFQ_ID_PATTERN.test(id), id);
+    assert.ok(RfqSchema.safeParse({ ...rfq, id }).success, id);
+  }
+  for (const id of ["", "../escaped", "a/b", "a\\b", "..", ".hidden", "C:x", "x".repeat(65), "RFQ 001"]) {
+    assert.ok(!RFQ_ID_PATTERN.test(id), JSON.stringify(id));
+    assert.ok(!RfqSchema.safeParse({ ...rfq, id }).success, JSON.stringify(id));
   }
 });
