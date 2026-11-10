@@ -23,6 +23,8 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
+      - run: npm run web:build
+      - run: npm run doctor
       - run: npm run data:check
       - run: npm run eval -- --list
       - run: npm run eval:replay

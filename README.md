@@ -4,6 +4,8 @@ A quoting desk for a made-up machine shop, built on the Claude Agent SDK. An age
 
 Every customer, person, part and price in this repo is synthetic.
 
+To show it to someone, start with [DEMO.md](DEMO.md): setup, the three scenarios on the page, and what to do when something breaks.
+
 ## Try it in this order
 
 You need Node 24.2 or later. Everything above `npm run demo` is free and needs no key.
@@ -11,13 +13,16 @@ You need Node 24.2 or later. Everything above `npm run demo` is free and needs n
 | command | what it does | cost, time |
 |---|---|---|
 | `npm ci` | installs, including a Claude Code binary of about 330 MB | |
+| `npm run doctor` | checks Node, the install, the binary, the catalog server, the recordings and the page build; names the key source, never the key | free, seconds |
 | `npm run eval:replay` | re-scores the 87 recorded trials of the cited run with today's scorers and prints the table, so you check it instead of trusting it | free, about 3 s |
 | `npm run eval:replay:holdout` | the same for the held-out run | free, seconds |
 | `npm run demo:replay` | plays back a recorded demo (an RFQ with an unknown material) | free |
-| `npm test` | 321 tests, no model | free |
+| `npm test` | 419 tests, no model | free |
+| `npm run web` | the page at http://127.0.0.1:4310: three scenarios, tool calls as they stream, the quote and the Approve button. Recorded runs play free and are labeled as replays | about $0.04 a live run |
 | `npm run demo` | one live RFQ; asks you before anything is written | about $0.04 a run |
 | `npm run eval -- --only fallback,unknown_material` | 7 live cases, the cheap sample | about $1 |
 | `npm run eval` | all 29 cases, one trial each | $1.14, 1m52s (2026-11-10) |
+| `claude --plugin-dir .` then `/quote-desk:demo` | loads the repo as a Claude Code plugin; the Skill runs the doctor and the same demo | as the demo |
 
 The live commands read `ANTHROPIC_API_KEY` from the shell or from a `.env` at the repo root (a key in `.env` wins, and the output names where the key came from, never the value). A live eval asks y/N on a terminal and stops starting trials once spend reaches $12 (`--max-run-usd`).
 
@@ -43,7 +48,7 @@ Both runs used `claude-opus-5-5` at effort `medium`, Agent SDK 0.3.321, data see
 | wall time, 4 trials at a time | 5m06s | 1m38s |
 | recorded at | `df0d68e`, [recordings/eval-k3](recordings/eval-k3/summary.md) | `86577ae`, [recordings/eval-holdout-k3](recordings/eval-holdout-k3/summary.md) |
 
-Prompt revisions between the first live run and the cited one: 0. The first run (29 of 29 cases, one trial each) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once, after the tuned run, and the prompt hasn't changed since.
+Prompt revisions between the first live run and the cited one: 0. The first run (29 of 29 cases, one trial each) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once before the prompt was frozen, after the tuned run. Since 2026-11-10 a nightly Action (`.github/workflows/nightly.yml`) reruns it at one trial per case with the prompt still frozen, and opens an issue when any case fails; DEMO.md says how to force a drill.
 
 ## Can this eval fail?
 
@@ -83,7 +88,8 @@ Why not let the model do everything? The model reads the email, flags what's mis
 - Timeouts are simulated: the stock service fails on a schedule instead of hanging. In the SDK probe, a real hang (a tool that slept 30 s under a 3 s MCP timeout) reached the model as an error at 3 s, and the run went on to a normal result.
 - Retries live in the tool, so the fallback cases test the degrade to `unverified` and the rule against re-polling, not an agent's own retry logic.
 - One model and 29 cases. Each case is worth about 3.4 points, and the 3-case categories give coarse signal.
-- The held-out set never ran before the prompt was frozen, but its wording sat in the build spec and in `src/data/words.ts`, so whoever tuned the prompt could have read it.
+- The held-out set never ran before the prompt was frozen, but its wording sat in the build spec and in `src/data/words.ts`, so whoever tuned the prompt could have read it. The nightly reruns it every day, so the pipeline has seen it many times since; a prompt change judged against those runs would no longer be judged on unseen cases.
+- The page's Stock service down and Unknown material runs are recordings, and the page labels them as replays.
 - The scorer is strict. A material question has to name the material and a tolerance question has to quote both numbers; a near miss fails.
 - The injection cases show only that the request was recorded. The refusal itself shows in `no_invented_price` and the gate: there is no send tool, and prices are computed in code.
 - A tool denied by the allowlist is recorded but not scored (`isolated` reads only the init message), and the scripted tests never run that deny path.
