@@ -71,7 +71,7 @@ test("clean.jsonl renders the header, one init line, every tool call, attempts a
   assert.ok(lines.includes("-> lookup_part partNumber=QD-90001"));
   assert.ok(lines.includes("-> price_material partNumber=QD-90004 material=\"304 stainless\""));
   assert.ok(lines.includes("-> StructuredOutput (quote draft)"));
-  assert.equal(count(lines, /^ {3}ok in_stock .* attempts 1\/3 \d+ms$/), 2);
+  assert.equal(count(lines, /^ {3}ok QD-\d+ \S+ in_stock .* attempts 1\/3 \d+ms$/), 2);
   assert.equal(count(lines, /^ {3}ok /), 9, "8 catalog results and the StructuredOutput result");
 
   const header = lines.findIndex((l) => /^line +part +material +qty +material \$ +machining \$ +unit \$ +ext \$ +stock +lead$/.test(l));

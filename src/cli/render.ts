@@ -78,13 +78,16 @@ function okSummary(d: Exclude<ToolResult, { ok: false }>): string {
       `${d.operationCount} ops`;
   }
   if ("materialName" in d) {
-    return `${d.materialCode} ${num(d.blankWeightLb)} lb at $${money(d.usdPerLb)}/lb, material $${money(d.costPerPartUsd)} per part`;
+    return `${d.partNumber} ${d.materialCode} ${num(d.blankWeightLb)} lb at $${money(d.usdPerLb)}/lb, ` +
+      `material $${money(d.costPerPartUsd)} per part`;
   }
+  // Parallel tool calls interleave their results, so every summary names its part.
   if ("operations" in d) {
-    return `${d.materialCode} qty ${num(d.quantity)} tol ${num(d.toleranceIn)} (${d.toleranceTier}), ${d.operations.length} ops, ` +
-      `${num(d.minutesPerPart)} min per part, machining $${money(d.machiningCostPerPartUsd)} per part`;
+    return `${d.partNumber} ${d.materialCode} qty ${num(d.quantity)} tol ${num(d.toleranceIn)} (${d.toleranceTier}), ` +
+      `${d.operations.length} ops, ${num(d.minutesPerPart)} min per part, machining $${money(d.machiningCostPerPartUsd)} per part`;
   }
-  return `${d.status} ${num(d.requiredLb)} of ${num(d.onHandLb)} lb on hand, lead ${num(d.leadTimeDays)} days`;
+  return `${d.partNumber} ${d.materialCode} ${d.status} ${num(d.requiredLb)} of ${num(d.onHandLb)} lb on hand, ` +
+    `lead ${num(d.leadTimeDays)} days`;
 }
 
 function toolResultLines(e: Extract<DeskEvent, { type: "tool_result" }>, o: RenderOptions): string[] {
