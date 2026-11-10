@@ -917,13 +917,9 @@ test("no committed text file names a denylist entry, and data, fixtures and reco
   assert.deepEqual(hits.map(hitText), [], `${files.length} files walked`);
 });
 
-// README.md belongs to the lead and lands at runbook step 13. Until it exists this test still
-// runs and reports its failure, marked todo so the slice run exits 0. Once the file is there the
-// todo mark drops away and the test counts like any other.
 const README_PATH = join(PATHS.root, "README.md");
-const README_TODO = existsSync(README_PATH) ? false : "README.md lands at runbook step 13 (lead)";
 
-test("6.5 scan: the README says every name is invented and gives the search date", { todo: README_TODO }, () => {
+test("6.5 scan: the README says every name is invented and gives the search date", () => {
   const readme = README_PATH;
   assert.ok(existsSync(readme), "README.md exists at the repo root");
   const text = readFileSync(readme, "utf8");
