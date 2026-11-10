@@ -1,0 +1,15 @@
+{
+  "name": "quote-desk",
+  "version": "0.1.0",
+  "description": "Runs the quote-desk demo, an agent on the Claude Agent SDK that drafts quotes for machined parts, where every customer, part and price is synthetic.",
+  "author": {
+    "name": "Mike Crotti"
+  },
+  "license": "MIT",
+  "mcpServers": {
+    "catalog": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/src/mcp/stdio.ts"]
+    }
+  }
+}

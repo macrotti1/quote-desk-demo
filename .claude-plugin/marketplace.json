@@ -1,0 +1,14 @@
+{
+  "name": "quote-desk-demo",
+  "description": "One plugin: the quote-desk demo, run from a clone of this repo. All data is synthetic.",
+  "owner": {
+    "name": "Mike Crotti"
+  },
+  "plugins": [
+    {
+      "name": "quote-desk",
+      "source": "./",
+      "description": "The quote-desk demo as a Claude Code Skill, with replays that need no API key. All data is synthetic."
+    }
+  ]
+}
