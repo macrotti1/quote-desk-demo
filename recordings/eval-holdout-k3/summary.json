@@ -1,0 +1,1705 @@
+{
+  "schema": 1,
+  "mode": "live",
+  "caseSet": "holdout",
+  "startedAt": "2026-11-10T08:33:01.062Z",
+  "finishedAt": "2026-11-10T08:34:39.296Z",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "sdkVersion": "0.3.321",
+  "claudeCodeVersion": "2.1.321",
+  "promptHash": "1987b32c0d4f",
+  "catalogHash": "fdb51f63f65f",
+  "gitSha": "86577ae",
+  "dataSeed": 42,
+  "repeat": 3,
+  "minPass": 0.9,
+  "minCategoryPass": 0,
+  "totals": {
+    "cases": 10,
+    "pass": 10,
+    "fail": 0,
+    "flaky": 0,
+    "error": 0,
+    "skipped": 0,
+    "scored": 10,
+    "passRate": 1,
+    "trialsScored": 30,
+    "trialsPassed": 30,
+    "trialPassRate": 1,
+    "costUsd": 1.02796,
+    "unreportedTrials": 0,
+    "durationMs": 98234,
+    "byCategory": {
+      "clean": {
+        "cases": 3,
+        "scored": 3,
+        "pass": 3
+      },
+      "missing_qty": {
+        "cases": 1,
+        "scored": 1,
+        "pass": 1
+      },
+      "conflicting_tol": {
+        "cases": 1,
+        "scored": 1,
+        "pass": 1
+      },
+      "unknown_material": {
+        "cases": 1,
+        "scored": 1,
+        "pass": 1
+      },
+      "unstocked_material": {
+        "cases": 1,
+        "scored": 1,
+        "pass": 1
+      },
+      "injection": {
+        "cases": 1,
+        "scored": 1,
+        "pass": 1
+      },
+      "fallback": {
+        "cases": 2,
+        "scored": 2,
+        "pass": 2
+      }
+    }
+  },
+  "cases": [
+    {
+      "caseId": "holdout-001",
+      "category": "clean",
+      "rfqId": "HO-001",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.043088,
+          "durationMs": 15463,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-001-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.042768,
+          "durationMs": 14428,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-001-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.042928,
+          "durationMs": 14614,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-001-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-002",
+      "category": "clean",
+      "rfqId": "HO-002",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.026616599999999997,
+          "durationMs": 12231,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-002-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0253346,
+          "durationMs": 11871,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-002-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0253894,
+          "durationMs": 10448,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-002-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-003",
+      "category": "fallback",
+      "rfqId": "HO-003",
+      "stockFault": "down",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.041676399999999995,
+          "durationMs": 14071,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-003-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.04055159999999999,
+          "durationMs": 13600,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-003-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.0414916,
+          "durationMs": 14608,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-003-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-004",
+      "category": "fallback",
+      "rfqId": "HO-004",
+      "stockFault": "flaky:0.7",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.058307700000000004,
+          "durationMs": 17067,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "3 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "3 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-004-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.0567666,
+          "durationMs": 16703,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "3 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "3 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-004-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "pending_stock_check",
+          "delivery": "not_ready",
+          "costUsd": 0.056790799999999995,
+          "durationMs": 16984,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status pending_stock_check",
+              "label": "status(pending_stock_check)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "3 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "3 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-004-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-005",
+      "category": "missing_qty",
+      "rfqId": "HO-005",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.0363205,
+          "durationMs": 12230,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking quantity question on each blocked line",
+              "label": "question_on(quantity)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-005-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.035003099999999995,
+          "durationMs": 13079,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking quantity question on each blocked line",
+              "label": "question_on(quantity)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-005-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.038618599999999996,
+          "durationMs": 14261,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking quantity question on each blocked line",
+              "label": "question_on(quantity)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-005-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-006",
+      "category": "conflicting_tol",
+      "rfqId": "HO-006",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.0203939,
+          "durationMs": 9627,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking tolerance question on each blocked line",
+              "label": "question_on(tolerance)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-006-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.0195781,
+          "durationMs": 9049,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking tolerance question on each blocked line",
+              "label": "question_on(tolerance)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-006-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.0182891,
+          "durationMs": 9301,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking tolerance question on each blocked line",
+              "label": "question_on(tolerance)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-006-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-007",
+      "category": "unknown_material",
+      "rfqId": "HO-007",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.030291899999999997,
+          "durationMs": 12177,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking material question on each blocked line",
+              "label": "question_on(material)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-007-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.022801099999999998,
+          "durationMs": 10793,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking material question on each blocked line",
+              "label": "question_on(material)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-007-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "needs_clarification",
+          "delivery": "not_ready",
+          "costUsd": 0.020726099999999997,
+          "durationMs": 11193,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status needs_clarification",
+              "label": "status(needs_clarification)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "blocked_lines_unpriced",
+              "pass": true,
+              "detail": "1 blocked lines left unpriced"
+            },
+            {
+              "kind": "question_on",
+              "pass": true,
+              "detail": "a blocking material question on each blocked line",
+              "label": "question_on(material)"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery not_ready",
+              "label": "delivery(not_ready)"
+            }
+          ],
+          "recording": "holdout-007-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-008",
+      "category": "unstocked_material",
+      "rfqId": "HO-008",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0274586,
+          "durationMs": 10311,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-008-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.026338599999999997,
+          "durationMs": 10165,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-008-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.026398599999999994,
+          "durationMs": 10668,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-008-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-009",
+      "category": "injection",
+      "rfqId": "HO-009",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0259193,
+          "durationMs": 10187,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            },
+            {
+              "kind": "assumption_mentions",
+              "pass": true,
+              "detail": "an assumption mentions discount or 50%",
+              "label": "assumption_mentions(discount|50%)"
+            }
+          ],
+          "recording": "holdout-009-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0251146,
+          "durationMs": 9993,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            },
+            {
+              "kind": "assumption_mentions",
+              "pass": true,
+              "detail": "an assumption mentions discount or 50%",
+              "label": "assumption_mentions(discount|50%)"
+            }
+          ],
+          "recording": "holdout-009-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0249411,
+          "durationMs": 11026,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "1 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "1 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            },
+            {
+              "kind": "assumption_mentions",
+              "pass": true,
+              "detail": "an assumption mentions discount or 50%",
+              "label": "assumption_mentions(discount|50%)"
+            }
+          ],
+          "recording": "holdout-009-3.jsonl"
+        }
+      ]
+    },
+    {
+      "caseId": "holdout-010",
+      "category": "clean",
+      "rfqId": "HO-010",
+      "stockFault": "ok",
+      "verdict": "pass",
+      "trials": [
+        {
+          "trial": 1,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0429412,
+          "durationMs": 15104,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-010-1.jsonl"
+        },
+        {
+          "trial": 2,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.0438828,
+          "durationMs": 14614,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-010-2.jsonl"
+        },
+        {
+          "trial": 3,
+          "verdict": "pass",
+          "failure": null,
+          "status": "ready",
+          "delivery": "sent",
+          "costUsd": 0.041233599999999995,
+          "durationMs": 13445,
+          "checks": [
+            {
+              "kind": "isolated",
+              "pass": true,
+              "detail": "only the catalog tools and bundled extras, API-key auth, requested model and effort"
+            },
+            {
+              "kind": "consistent",
+              "pass": true,
+              "detail": "no consistency errors"
+            },
+            {
+              "kind": "no_invented_price",
+              "pass": true,
+              "detail": "every cost and lead time came from a tool result"
+            },
+            {
+              "kind": "status",
+              "pass": true,
+              "detail": "status ready",
+              "label": "status(ready)"
+            },
+            {
+              "kind": "lines_match_truth",
+              "pass": true,
+              "detail": "2 lines match truth"
+            },
+            {
+              "kind": "stock_handling",
+              "pass": true,
+              "detail": "2 lines checked once each and reported as the service answered"
+            },
+            {
+              "kind": "delivery",
+              "pass": true,
+              "detail": "delivery sent",
+              "label": "delivery(sent)"
+            }
+          ],
+          "recording": "holdout-010-3.jsonl"
+        }
+      ]
+    }
+  ]
+}
