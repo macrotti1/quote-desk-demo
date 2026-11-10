@@ -9,7 +9,7 @@
     "node": ">=24.2.0"
   },
   "scripts": {
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json && tsc -p web/tsconfig.json",
     "test": "node --test \"test/**/*.test.ts\"",
     "data": "node src/data/cli.ts write",
     "data:check": "node src/data/cli.ts check",
@@ -19,7 +19,12 @@
     "eval": "node bin/eval.ts",
     "eval:holdout": "node bin/eval.ts --cases eval/cases-holdout.json --min-category-pass 0",
     "eval:replay": "node bin/eval.ts --replay recordings/eval-k3",
-    "eval:replay:holdout": "node bin/eval.ts --cases eval/cases-holdout.json --min-category-pass 0 --replay recordings/eval-holdout-k3"
+    "eval:replay:holdout": "node bin/eval.ts --cases eval/cases-holdout.json --min-category-pass 0 --replay recordings/eval-holdout-k3",
+    "eval:nightly": "node bin/eval.ts --cases eval/cases-holdout.json --min-category-pass 0 --max-run-usd 2 --yes",
+    "nightly:report": "node scripts/nightly-report.ts",
+    "web:build": "vite build --config web/vite.config.ts",
+    "web": "npm run web:build && node bin/web.ts",
+    "doctor": "node bin/doctor.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "0.3.321",
@@ -28,6 +33,12 @@
   },
   "devDependencies": {
     "@types/node": "26.6.6",
-    "typescript": "7.0.2"
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.7"
   }
 }
