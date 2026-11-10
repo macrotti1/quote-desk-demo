@@ -17,7 +17,7 @@ Video: VIDEO_LINK
 |---|---|---|
 | 1 | `npm run doctor` | seven lines starting `ok`. A `warn` on `key` means replays only, and one on `web` clears after step 3. A `FAIL` line names what to fix |
 | 2 | `npm run demo -- --replay recordings/demo-clean.jsonl` | a line starting `REPLAY of a demo run recorded 2026-11-10 08:35 UTC`, then `Total $2,277.50  (margin 30%)` near the end |
-| 3 | `npm run web` | `Quote Desk page: http://127.0.0.1:4310 (API key: .env, live runs on)`. Open http://127.0.0.1:4310 and leave it running |
+| 3 | `npm run web` | `Quote Desk page: http://127.0.0.1:4310 (API key: .env, live runs on)`. Open http://127.0.0.1:4310 and leave it running (Ctrl+C stops it) |
 | 4 | `npm run demo -- --scenario clean --approve no` | in a second terminal, one live rehearsal: eight tool calls, `Total $2,277.50  (margin 30%)`, `Declined`, a cost near $0.04 |
 
 ## The three scenarios
@@ -60,7 +60,7 @@ All figures are the SDK's estimate, measured 2026-11-10 on `claude-opus-5-5` at 
 
 To force a drill: in the Actions tab, open the nightly workflow, choose Run workflow and tick `drill` (or `gh workflow run nightly.yml -f drill=true`). The drill flips one passing verdict in memory, so the issue opens with `[drill]` in its title.
 
-The run needs the `ANTHROPIC_API_KEY` repository secret. Without it the job prints a notice and ends green. Nightly cost isn't measured yet. The estimate is $1.03 / 3, about $0.35 a night.
+The run needs the `ANTHROPIC_API_KEY` repository secret. Without it the job prints a notice and ends green. Nightly cost isn't measured yet. The estimate is $1.03 / 3, about $0.34 a night.
 
 GitHub's docs say that in a public repository, scheduled workflows are automatically disabled when there's been no repository activity for 60 days. Turn it back on from the Actions tab.
 
@@ -76,7 +76,7 @@ Then `/quote-desk:demo`. It runs the doctor and the same demo through `bin/demo.
 
 ## Talk track
 
-<!-- Draft for Mike to rewrite in his own words before recording. Not final. -->
+Draft, to be rewritten before the recording.
 
 > I quote machined parts for a living. This is a quote desk for a made-up machine shop. An agent on the Claude Agent SDK reads a request for quote and drafts the quote.
 >
