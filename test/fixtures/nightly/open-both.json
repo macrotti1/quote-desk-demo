@@ -1,0 +1,50 @@
+[
+  {
+    "number": 9,
+    "title": "Nightly eval: infrastructure failure (2026-11-10)",
+    "labels": [
+      {
+        "id": "L1",
+        "name": "nightly-eval",
+        "description": "",
+        "color": "1D76DB"
+      },
+      {
+        "id": "L3",
+        "name": "infra",
+        "description": "",
+        "color": "FBCA04"
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "title": "Nightly eval: 3 of 4 held-out cases passed (2026-11-09)",
+    "labels": [
+      {
+        "id": "L1",
+        "name": "nightly-eval",
+        "description": "",
+        "color": "1D76DB"
+      },
+      {
+        "id": "L2",
+        "name": "regression",
+        "description": "",
+        "color": "B60205"
+      }
+    ]
+  },
+  {
+    "number": 4,
+    "title": "An unrelated issue",
+    "labels": [
+      {
+        "id": "L9",
+        "name": "bug",
+        "description": "",
+        "color": "000000"
+      }
+    ]
+  }
+]

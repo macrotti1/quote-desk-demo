@@ -1,0 +1,103 @@
+name: nightly
+
+# Reruns the 10 held-out cases live, one trial each, and files the result as an issue:
+# a drop opens or updates one issue, the next clean run closes it. Run it by hand with drill on to test the alarm.
+on:
+  schedule:
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+    inputs:
+      drill:
+        description: "Flip one passing verdict in memory to test the issue path"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: nightly-eval
+  cancel-in-progress: false
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Forks have no secret. Without a key the job ends green and every later step is skipped.
+      - name: Check for the API key
+        id: key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY is not set, so the nightly eval did not run."
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # No later step needs git credentials, so the job token (issues: write) stays out of git's config.
+      - uses: actions/checkout@v7
+        if: steps.key.outputs.present == 'true'
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        if: steps.key.outputs.present == 'true'
+        with:
+          node-version: 24
+          cache: npm
+
+      # Step timeouts fail the step instead of cancelling the job, so the !cancelled() steps below still run
+      # and an empty exit code files an infra issue. The job timeout stays as the backstop.
+      - name: Install
+        if: steps.key.outputs.present == 'true'
+        timeout-minutes: 10
+        run: npm ci
+
+      # A failing eval must not stop the job: the report step decides, from latest.json and the exit code.
+      - name: Run the held-out eval
+        id: eval
+        if: steps.key.outputs.present == 'true'
+        timeout-minutes: 15
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          code=0
+          npm run eval:nightly || code=$?
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+          echo "eval exit code: $code"
+
+      - name: Add the report to the job summary
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        run: |
+          if [ -f eval/results/latest.md ]; then
+            cat eval/results/latest.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No eval/results/latest.md was written." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload the results
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: nightly-eval-results
+          path: eval/results/
+          retention-days: 14
+          if-no-files-found: warn
+
+      # Opens, updates or closes the nightly issue. Its exit code is the job's result: 0 ok, 1 regression, 3 infra.
+      - name: Report
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVAL_EXIT: ${{ steps.eval.outputs.exit }}
+          DRILL: ${{ inputs.drill }}
+        run: |
+          if [ "$DRILL" = "true" ]; then
+            npm run nightly:report -- --eval-exit "${EVAL_EXIT:-3}" --drill
+          else
+            npm run nightly:report -- --eval-exit "${EVAL_EXIT:-3}"
+          fi

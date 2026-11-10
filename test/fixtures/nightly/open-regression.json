@@ -1,0 +1,20 @@
+[
+  {
+    "number": 7,
+    "title": "Nightly eval: 3 of 4 held-out cases passed (2026-11-10)",
+    "labels": [
+      {
+        "id": "L1",
+        "name": "nightly-eval",
+        "description": "",
+        "color": "1D76DB"
+      },
+      {
+        "id": "L2",
+        "name": "regression",
+        "description": "",
+        "color": "B60205"
+      }
+    ]
+  }
+]

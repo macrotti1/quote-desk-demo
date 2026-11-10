@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "minPassRate": 0.5,
+  "minCategoryPassRate": {
+    "fallback": 1
+  },
+  "maxErrorCases": 0
+}
