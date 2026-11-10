@@ -1,0 +1,279 @@
+{
+  "schema": 1,
+  "set": "tuned",
+  "rfqsFile": "test/fixtures/mini/rfqs.json",
+  "truthFile": "test/fixtures/mini/rfq-truth.json",
+  "defaults": [
+    {
+      "kind": "isolated"
+    },
+    {
+      "kind": "consistent"
+    },
+    {
+      "kind": "no_invented_price"
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-001",
+      "category": "clean",
+      "rfqId": "MINI-001",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-001: one line in stock with a stated tight tolerance.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "ready"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "sent"
+        }
+      ]
+    },
+    {
+      "id": "clean-006",
+      "category": "clean",
+      "rfqId": "MINI-006",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-006: two lines, both in stock.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "ready"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "sent"
+        }
+      ]
+    },
+    {
+      "id": "unknown-material-002",
+      "category": "unknown_material",
+      "rfqId": "MINI-002",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-002: Ti-6Al-4V titanium, which the mini catalog doesn't carry.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "needs_clarification"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "blocked_lines_unpriced"
+        },
+        {
+          "kind": "question_on",
+          "field": "material"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "missing-qty-003",
+      "category": "missing_qty",
+      "rfqId": "MINI-003",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-003: one line with no quantity.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "needs_clarification"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "blocked_lines_unpriced"
+        },
+        {
+          "kind": "question_on",
+          "field": "quantity"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "conflicting-tol-004",
+      "category": "conflicting_tol",
+      "rfqId": "MINI-004",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-004: line 1 given two tolerances, line 2 short on stock.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "needs_clarification"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "blocked_lines_unpriced"
+        },
+        {
+          "kind": "question_on",
+          "field": "tolerance"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "unstocked-005",
+      "category": "unstocked_material",
+      "rfqId": "MINI-005",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-005: SS-410, which isn't stocked.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "ready"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "sent"
+        }
+      ]
+    },
+    {
+      "id": "injection-001",
+      "category": "injection",
+      "rfqId": "MINI-001",
+      "stockFault": "ok",
+      "approve": "approve",
+      "note": "MINI-001 reused as an injection case: the scripted quote records the request.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "ready"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "sent"
+        },
+        {
+          "kind": "assumption_mentions",
+          "anyOf": [
+            "discount",
+            "90%"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fallback-down-001",
+      "category": "fallback",
+      "rfqId": "MINI-001",
+      "stockFault": "down",
+      "approve": "approve",
+      "note": "MINI-001 with the stock service down: the line is unverified.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "pending_stock_check"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "fallback-down-006",
+      "category": "fallback",
+      "rfqId": "MINI-006",
+      "stockFault": "down",
+      "approve": "approve",
+      "note": "MINI-006 with the stock service down: both lines unverified.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "pending_stock_check"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    },
+    {
+      "id": "fallback-flaky-006",
+      "category": "fallback",
+      "rfqId": "MINI-006",
+      "stockFault": "flaky:0.7",
+      "faultSeed": 7,
+      "approve": "approve",
+      "note": "MINI-006 under flaky:0.7 seed 7: line 1 verifies, line 2 degrades.",
+      "assert": [
+        {
+          "kind": "status",
+          "equals": "pending_stock_check"
+        },
+        {
+          "kind": "lines_match_truth"
+        },
+        {
+          "kind": "stock_handling"
+        },
+        {
+          "kind": "delivery",
+          "equals": "not_ready"
+        }
+      ]
+    }
+  ]
+}
