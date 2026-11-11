@@ -48,7 +48,7 @@ Both runs used `claude-opus-5-5` at effort `medium`, Agent SDK 0.3.321, data see
 | wall time, 4 trials at a time | 5m06s | 1m38s |
 | recorded at | `df0d68e`, [recordings/eval-k3](recordings/eval-k3/summary.md) | `86577ae`, [recordings/eval-holdout-k3](recordings/eval-holdout-k3/summary.md) |
 
-Prompt revisions between the first live run and the cited one: 0. The first run (29 of 29 cases, one trial each) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once, after the tuned run, and the prompt hasn't changed since. A nightly Action (`.github/workflows/nightly.yml`, first scheduled run 2026-11-11) is set to rerun it at one trial per case with the prompt still frozen, and to open an issue when any case fails; DEMO.md says how to force a drill.
+Prompt revisions between the first live run and the cited one: 0. The first run (29 of 29 cases, one trial each) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once, after the tuned run, and the prompt hasn't changed since. A nightly Action (`.github/workflows/nightly.yml`) reruns it at one trial per case with the prompt still frozen and opens an issue when any case fails. A forced drill opened [issue #1](https://github.com/macrotti1/quote-desk-demo/issues/1) on 2026-11-11 and the next clean run (10 of 10) closed it; DEMO.md says how to force one.
 
 ## Can this eval fail?
 
