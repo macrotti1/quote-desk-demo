@@ -1,6 +1,6 @@
 # quote-desk-demo
 
-A quoting desk for a made-up machine shop, built on the Claude Agent SDK. An agent reads a customer's request for quote (RFQ), looks up parts, material prices, cycle times and stock through four tools, and drafts a quote. Code does the arithmetic and decides whether the quote can go out. An eval grades the agent on 29 cases, and every run is recorded, so you can re-score it without an API key.
+A quoting desk for a made-up machine shop, built on the Claude Agent SDK. An agent reads a customer's request for quote (RFQ), looks up parts, material prices, cycle times and stock through four tools, and drafts a quote. Code does the arithmetic and decides whether the quote can go out. An eval grades the agent on 29 cases, and every eval run is recorded, so you can re-score it without an API key.
 
 Every customer, person, part and price in this repo is synthetic.
 
@@ -12,7 +12,7 @@ You need Node 24.2 or later. Everything above `npm run demo` is free and needs n
 
 | command | what it does | cost, time |
 |---|---|---|
-| `npm ci` | installs, including a Claude Code binary of about 330 MB | |
+| `npm ci` | installs, including a Claude Code binary of about 346 MB (measured on Windows x64) | |
 | `npm run doctor` | checks Node, the install, the binary, the catalog server, the recordings and the page build; names the key source, never the key | free, seconds |
 | `npm run eval:replay` | re-scores the 87 recorded trials of the cited run with today's scorers and prints the table, so you check it instead of trusting it | free, about 2 s |
 | `npm run eval:replay:holdout` | the same for the held-out run | free, seconds |
@@ -32,7 +32,7 @@ The RFQ email goes to the agent inside an `<rfq_email>` tag, as customer data. T
 
 ## Results
 
-Both runs used `claude-opus-5-5` at effort `medium`, Agent SDK 0.3.321, data seed 42, prompt hash `1987b32c0d4f` and catalog hash `fdb51f63f65f`, on 2026-11-10. Each case ran 3 times and passes only if all 3 trials pass. Cost is the SDK's estimate.
+Both runs used `claude-opus-5-5` at effort `medium`, Agent SDK 0.3.321, data seed 42 (the held-out RFQs come from seed 43), prompt hash `1987b32c0d4f` and catalog hash `fdb51f63f65f`, on 2026-11-10. Each case ran 3 times and passes only if all 3 trials pass. Cost is the SDK's estimate, and it includes a small `claude-haiku-5-5` side call that the Claude Code CLI makes in every run.
 
 | category | tuned set | held-out set |
 |---|---|---|
@@ -48,7 +48,7 @@ Both runs used `claude-opus-5-5` at effort `medium`, Agent SDK 0.3.321, data see
 | wall time, 4 trials at a time | 5m06s | 1m38s |
 | recorded at | `df0d68e`, [recordings/eval-k3](recordings/eval-k3/summary.md) | `86577ae`, [recordings/eval-holdout-k3](recordings/eval-holdout-k3/summary.md) |
 
-Prompt revisions between the first live run and the cited one: 0. The first run (29 of 29 cases, one trial each) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once, after the tuned run, and the prompt hasn't changed since. A nightly Action (`.github/workflows/nightly.yml`) reruns it at one trial per case with the prompt still frozen and opens an issue when any case fails. A forced drill opened [issue #1](https://github.com/macrotti1/quote-desk-demo/issues/1) on 2026-11-11 and the next clean run (10 of 10) closed it; DEMO.md says how to force one.
+Prompt revisions between the first live run and the cited one: 0. The first full run (29 of 29 cases, one trial each, right after a 4-case check on the same prompt) is kept in [recordings/eval-first/summary.md](recordings/eval-first/summary.md). The held-out set ran once, after the tuned run, and the prompt hasn't changed since. A nightly Action (`.github/workflows/nightly.yml`) reruns it at one trial per case with the prompt still frozen and opens an issue when any case fails. A forced drill opened [issue #1](https://github.com/macrotti1/quote-desk-demo/issues/1) on 2026-11-11 and the next clean run (10 of 10) closed it; DEMO.md says how to force one.
 
 ## Can this eval fail?
 
@@ -64,7 +64,7 @@ Every live trial passed, so it's a fair question. Two test files answer it with 
 | isolated | The session had only the 4 catalog tools and structured output, no user skills or plugins, API-key auth, and the requested model and effort. It can't see a loaded CLAUDE.md; a canary in the SDK probe covered that once. | host config |
 | consistent | The status agrees with the model's own lines (C1 to C8). | model |
 | status | The outcome is right. | model |
-| lines_match_truth | The email was read correctly: part, quantity, material and tolerance on every line. | model |
+| lines_match_truth | The email was read correctly: part, quantity and material on every line, and tolerance on every line that isn't blocked for another reason. | model |
 | no_invented_price | Every cost and lead time equals a value a tool returned in this run, for the same part and material. The scorer reads tool results, never the quote's own claims. | model |
 | blocked_lines_unpriced | A line that can't be priced yet has no costs, price or lead time. The agent asked instead of guessing. | model |
 | question_on | The right question is on the right line: a material question names the material, a tolerance question quotes both conflicting values. | model |
@@ -84,15 +84,15 @@ Why not let the model do everything? The model reads the email, flags what's mis
 
 ## Limits
 
-- The data is synthetic and every name is invented. Each customer company name was searched as an exact phrase on 2026-11-09, with no hits.
+- The data is synthetic and every customer name is invented. The material grades (6061-T6, Ti-6Al-4V and the like) are real. Each customer company name was searched as an exact phrase on 2026-11-09, with no hits.
 - Timeouts are simulated: the stock service fails on a schedule instead of hanging. In the SDK probe, a real hang (a tool that slept 30 s under a 3 s MCP timeout) reached the model as an error at 3 s, and the run went on to a normal result.
 - Retries live in the tool, so the fallback cases test the degrade to `unverified` and the rule against re-polling, not an agent's own retry logic.
-- One model and 29 cases. Each case is worth about 3.4 points, and the 3-case categories give coarse signal.
+- One model under test and 29 cases. Each case is worth about 3.4 points, and the 3-case categories give coarse signal.
 - The held-out set never ran before the prompt was frozen, but its wording sat in the build spec and in `src/data/words.ts`, so whoever tuned the prompt could have read it. Once the nightly runs, the pipeline sees it every day; a prompt change judged against those runs would no longer be judged on unseen cases.
 - The page can run any scenario live or play its recording; a played recording is labeled as a replay, and page runs themselves aren't recorded.
 - The scorer is strict. A material question has to name the material and a tolerance question has to quote both numbers; a near miss fails.
 - The injection cases show only that the request was recorded. The refusal itself shows in `no_invented_price` and the gate: there is no send tool, and prices are computed in code.
-- A tool denied by the allowlist is recorded but not scored (`isolated` reads only the init message), and the scripted tests never run that deny path.
+- A tool denied by the allowlist is recorded but not scored (`isolated` reads only the init message). `test/agent.test.ts` runs that deny path; the oracle and integration tests never trigger it.
 - The agent can't ask a question mid-run (no AskUserQuestion), and no case feeds an answer back.
 - `maxBudgetUsd` can overshoot, and cost is the SDK's estimate.
 - API-key auth against the default endpoint only.
@@ -104,7 +104,7 @@ Why not let the model do everything? The model reads the email, flags what's mis
 
 I built this with Claude Code. I set the goal and made the calls along the way; Claude Code wrote the spec, the code and the tests.
 
-The spec came first. A planning pass wrote it and three critics went over it: one checked the SDK claims against the SDK's source, one checked it could be built as written, and one argued against it. A short probe against the real SDK settled what the source couldn't, such as what a tool timeout looks like to the model. Six builders then took a slice each, every slice with its own verify, review and fix round, and seven reviewers, each paired with a skeptic, went over the joins between slices. A lead session read the results and made every commit. Before the first paid run, a scripted stand-in for the model went through the real runtime and scorers to prove every case could pass and that wrong agents fail. The first live run passed 29 of 29, and the prompt hasn't changed since.
+The spec came first. A planning pass wrote it and three critics went over it: one checked the SDK claims against the SDK's source, one checked it could be built as written, and one argued against it. A short probe against the real SDK settled what the source couldn't, such as what a tool timeout looks like to the model. Six builders then took a slice each, every slice with its own verify, review and fix round, and seven reviewers, each paired with a skeptic, went over the joins between slices. A lead session read the results and made every commit. Before the first paid eval run, a scripted stand-in for the model went through the real runtime and scorers to prove every case could pass and that wrong agents fail. The first full live run passed 29 of 29, and the prompt hasn't changed since.
 
 ## Regenerating the data
 
