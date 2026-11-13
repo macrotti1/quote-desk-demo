@@ -100,9 +100,9 @@ Why not let the model do everything? The model reads the email, flags what's mis
 
 ## How it was built
 
-I built this repo with Claude Code. The goals I set and the calls I made along the way helped write the spec, the code and the tests.
+I built this repo with Claude Code. I set the goals and made the calls, and agents wrote the spec, the code and the tests.
 
-As with all my projects, the spec came first. A planning pass wrote it, and then three critic agents went over the plan. One checked the SDK claims against the source, one confirmed it could be built as the plan was written, and one argued against the plan. A short probe against the real SDK settled what the source could not, such as what a tool timeout looks like to the model. Six builders then took a slice each, with its own verify, review and fix rounds. Seven reviewers, each paired with a skeptic, then went over all of the joins between the slices. A lead session read the results and made every commit. Before the first paid eval run, we ran a script that stood in for the model. It went through the real runtime and scorers to prove every case could pass and that the wrong agents failed. The first full live run passed 29 of 29, and we have not changed the prompt since.
+The spec came first. A planning pass wrote it, then three critic agents went over the draft. One checked the SDK claims against the installed packages, one checked whether it could be built as written, and one argued against it. A short probe against the real SDK settled what the packages could not, such as what a tool timeout looks like to the model. Six builders took a slice each, with verify, review and fix rounds. Seven reviewers, each paired with a skeptic, went over the joins between the slices. I quote machined parts for a living, so the generated catalog stayed uncommitted until I had read its price and stock tables myself. Before the first paid eval run, a script stood in for the model to prove every case could pass and that wrong agents failed. Two wrong agents got through: we fixed the scorer for one, and the other is in Limits. The first full live run passed 29 of 29, and we haven't changed the prompt since.
 
 ## Regenerating the data
 
